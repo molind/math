@@ -188,8 +188,7 @@ themeSelect.addEventListener('change', () => {
   setTheme(themeSelect.value);
 });
 
-// Start game event
-startButton.addEventListener('click', () => {
+function startGame() {
   maxResult = parseInt(maxResultSelect.value);
   gameMode = gameModeSelect.value;
   enableKeyboard = enableKeyboardCheckbox.checked;
@@ -199,11 +198,16 @@ startButton.addEventListener('click', () => {
 
   mainMenu.classList.add('hidden');
   gameContainer.classList.remove('hidden');
-  virtualKeyboard.classList.toggle('hidden', !enableKeyboard);
+  updateKeyboardSettings();
   initializeExamples();
   resetStatistics();
   showNextExample();
   answerInput.focus();
+}
+
+// Start game event
+startButton.addEventListener('click', () => {
+  startGame();
 });
 
 // Initialize examples
@@ -388,7 +392,7 @@ settingsButton.addEventListener('click', () => {
 backToGameButton.addEventListener('click', () => {
   enableKeyboard = enableKeyboardCheckbox.checked;
   localStorage.setItem('enableKeyboard', enableKeyboard);
-  virtualKeyboard.classList.toggle('hidden', !enableKeyboard);
+  updateKeyboardSettings();
   settingsContainer.classList.add('hidden');
   gameContainer.classList.remove('hidden');
 });
@@ -463,6 +467,11 @@ function displayResults() {
   }
 }
 
+function updateKeyboardSettings() {
+  answerInput.readOnly = enableKeyboard;
+  virtualKeyboard.classList.toggle('hidden', !enableKeyboard);
+}
+
 // Service worker registration
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -492,12 +501,6 @@ window.onload = () => {
 
   // If progress saved, start game
   if (Object.keys(progress).length > 0) {
-    mainMenu.classList.add('hidden');
-    gameContainer.classList.remove('hidden');
-    virtualKeyboard.classList.toggle('hidden', !enableKeyboard);
-    initializeExamples();
-    resetStatistics();
-    showNextExample();
-    answerInput.focus();
+    startGame();
   }
 };
