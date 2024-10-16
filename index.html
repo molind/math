@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Таблица умножения — Игра</title>
+  <title data-lang="title">Таблица умножения — Игра</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Подключение стилей -->
   <link rel="stylesheet" href="style.css">
@@ -18,12 +18,12 @@
   <!-- Контейнер для выбора максимального результата -->
   <div id="settings">
     <h1 data-lang="title">Таблица умножения</h1>
-    <label for="max-result" data-lang="choose-max">Выберите максимальный результат умножения:</label>
+    <label for="max-result" data-lang="chooseMax">Выберите максимальный результат умножения:</label>
     <select id="max-result">
       <option value="50">До 50</option>
       <option value="100" selected>До 100</option>
     </select>
-    <button id="start-game" data-lang="start-game">Начать игру</button>
+    <button id="start-game" data-lang="startGame">Начать игру</button>
   </div>
 
   <!-- Контейнер для игры -->
@@ -39,7 +39,7 @@
   <!-- Контейнер для результатов -->
   <div id="results-container" class="hidden">
     <button id="close-results" data-lang="close">Закрыть</button>
-    <button id="clear-results" data-lang="clear-results">Очистить результаты</button>
+    <button id="clear-results" data-lang="clearResults">Очистить результаты</button>
     <div id="grid-container">
       <!-- Здесь будет генерироваться таблица результатов -->
     </div>
