@@ -1,0 +1,114 @@
+/* Сброс стилей */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  h1, h2 {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  #language-switcher {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  #language-switcher button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  #settings, #game-container, #results-container {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  label, select, button {
+    font-size: 18px;
+    margin: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  #question-container {
+    margin-top: 50px;
+  }
+  
+  #answer-input {
+    font-size: 24px;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+  }
+  
+  #results-button, #settings-button, #close-results, #clear-results {
+    margin-top: 20px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  /* Стили для таблицы результатов */
+  #grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    margin-top: 20px;
+  }
+  
+  .cell {
+    background-color: gray;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  .cell.red {
+    background-color: #e74c3c;
+  }
+  
+  .cell.green {
+    background-color: #2ecc71;
+  }
+  
+  .cell.gold {
+    background-color: gold;
+    color: black;
+  }
+  
+  /* Адаптивность */
+  @media (max-width: 600px) {
+    #grid-container {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+  
+  /* Стили для изменения цвета вопроса */
+  #question.red {
+    color: #e74c3c;
+  }
+  
+  #question.green {
+    color: #2ecc71;
+  }
+  
+  #question.gold {
+    color: gold;
+  }
+  

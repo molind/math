@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Таблица умножения — Игра</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Подключение стилей -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Переключатель языка -->
+  <div id="language-switcher">
+    <button id="lang-ru">Русский</button>
+    <button id="lang-en">English</button>
+  </div>
+
+  <!-- Контейнер для выбора максимального результата -->
+  <div id="settings">
+    <h1 data-lang="title">Таблица умножения</h1>
+    <label for="max-result" data-lang="choose-max">Выберите максимальный результат умножения:</label>
+    <select id="max-result">
+      <option value="50">До 50</option>
+      <option value="100" selected>До 100</option>
+    </select>
+    <button id="start-game" data-lang="start-game">Начать игру</button>
+  </div>
+
+  <!-- Контейнер для игры -->
+  <div id="game-container" class="hidden">
+    <div id="question-container">
+      <h2 id="question"></h2>
+      <input type="number" id="answer-input" autocomplete="off" />
+    </div>
+    <button id="results-button" data-lang="results">Результаты</button>
+    <button id="settings-button" data-lang="settings">Настройки</button>
+  </div>
+
+  <!-- Контейнер для результатов -->
+  <div id="results-container" class="hidden">
+    <button id="close-results" data-lang="close">Закрыть</button>
+    <button id="clear-results" data-lang="clear-results">Очистить результаты</button>
+    <div id="grid-container">
+      <!-- Здесь будет генерироваться таблица результатов -->
+    </div>
+  </div>
+
+  <!-- Подключение скриптов -->
+  <script src="app.js"></script>
+</body>
+</html>
