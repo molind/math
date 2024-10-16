@@ -1,59 +1,114 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title data-lang="title">Таблица умножения — Игра</title>
+  <title data-lang="title">Learning Mathematics</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Мета-теги для iOS -->
+  <!-- Meta tags for iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <!-- Иконки для iOS -->
+  <!-- Icons for iOS -->
   <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
   <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-icon-167x167.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">  
-  <!-- Подключение стилей -->
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+  <!-- Link to styles -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Переключатель языка -->
+  <!-- Language Switcher -->
   <div id="language-switcher">
-    <button id="lang-ru">Русский</button>
-    <button id="lang-en">English</button>
-  </div>
-
-  <!-- Контейнер для выбора максимального результата -->
-  <div id="settings">
-    <h1 data-lang="title">Таблица умножения</h1>
-    <label for="max-result" data-lang="chooseMax">Выберите максимальный результат умножения:</label>
-    <select id="max-result">
-      <option value="50">До 50</option>
-      <option value="100" selected>До 100</option>
+    <label for="language-select" data-lang="language">Language:</label>
+    <select id="language-select">
+      <option value="en">English</option>
+      <option value="ru">Русский</option>
+      <option value="pl">Polski</option>
     </select>
-    <button id="start-game" data-lang="startGame">Начать игру</button>
   </div>
 
-  <!-- Контейнер для игры -->
+  <!-- Main Menu -->
+  <div id="main-menu">
+    <h1 data-lang="mainTitle">Learning Mathematics</h1>
+    <label for="game-mode" data-lang="chooseMode">Choose game mode:</label>
+    <select id="game-mode">
+      <option value="multiplication" data-lang="multiplication">Multiplication</option>
+      <option value="division" data-lang="division">Division</option>
+      <option value="addition" data-lang="addition">Addition</option>
+      <option value="subtraction" data-lang="subtraction">Subtraction</option>
+    </select>
+    <button id="start-game" data-lang="startGame">Start Game</button>
+  </div>
+
+  <!-- Game Container -->
   <div id="game-container" class="hidden">
+    <h1 data-lang="gameTitle">Learning Mathematics</h1>
     <div id="question-container">
       <h2 id="question"></h2>
       <input type="number" id="answer-input" autocomplete="off" />
     </div>
-    <button id="results-button" data-lang="results">Результаты</button>
-    <button id="settings-button" data-lang="settings">Настройки</button>
+    <div id="virtual-keyboard" class="hidden">
+      <div class="keyboard-row">
+        <button class="key">1</button>
+        <button class="key">2</button>
+        <button class="key">3</button>
+      </div>
+      <div class="keyboard-row">
+        <button class="key">4</button>
+        <button class="key">5</button>
+        <button class="key">6</button>
+      </div>
+      <div class="keyboard-row">
+        <button class="key">7</button>
+        <button class="key">8</button>
+        <button class="key">9</button>
+      </div>
+      <div class="keyboard-row">
+        <button class="key" id="key-backspace">⌫</button>
+        <button class="key">0</button>
+        <button class="key" id="key-enter">⏎</button>
+      </div>
+    </div>
+    <button id="results-button" data-lang="results">Results</button>
+    <button id="settings-button" data-lang="settings">Settings</button>
   </div>
 
-  <!-- Контейнер для результатов -->
+  <!-- Settings Container -->
+  <div id="settings" class="hidden">
+    <h1 data-lang="settingsTitle">Settings</h1>
+    <label for="max-result" data-lang="chooseMax">Choose the maximum result:</label>
+    <select id="max-result">
+      <option value="50" data-lang="upTo50">Up to 50</option>
+      <option value="100" data-lang="upTo100" selected>Up to 100</option>
+    </select>
+    <br>
+    <label for="enable-keyboard">
+      <input type="checkbox" id="enable-keyboard">
+      <span data-lang="enableKeyboard">Virtual Keyboard</span>
+    </label>
+    <br>
+    <!-- Theme selection -->
+    <label for="theme-select" data-lang="chooseTheme">Choose Theme:</label>
+    <select id="theme-select">
+      <option value="system" data-lang="systemTheme">System Default</option>
+      <option value="light" data-lang="lightTheme">Light</option>
+      <option value="dark" data-lang="darkTheme">Dark</option>
+    </select>
+    <br>
+    <button id="back-to-game" data-lang="back">Back</button>
+  </div>
+
+  <!-- Results Container -->
   <div id="results-container" class="hidden">
-    <button id="close-results" data-lang="close">Закрыть</button>
-    <button id="clear-results" data-lang="clearResults">Очистить результаты</button>
-    <div id="grid-container">
-      <!-- Здесь будет генерироваться таблица результатов -->
+    <h1 data-lang="resultsTitle">Results</h1>
+    <button id="close-results" data-lang="close">Close</button>
+    <button id="end-game" data-lang="endGame">End Game</button>
+    <div id="results-content">
+      <!-- Statistics and grid will be generated here -->
     </div>
   </div>
 
-  <!-- Подключение скриптов -->
+  <!-- Link to script -->
   <script src="app.js"></script>
 </body>
 </html>

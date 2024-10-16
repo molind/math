@@ -1,4 +1,4 @@
-const CACHE_NAME = 'multiplication-table-cache-v1';
+const CACHE_NAME = 'multiplication-table-cache-v2';
 const urlsToCache = [
   './',
   './index.html',

@@ -1,4 +1,54 @@
-/* Сброс стилей */
+/* CSS Variables for themes */
+:root {
+  --background-color: #f4f4f4;
+  --text-color: #333;
+  --button-background-color: #e0e0e0;
+  --button-text-color: #333;
+  --input-background-color: #fff;
+  --input-text-color: #333;
+  --cell-background-color: gray;
+  --cell-text-color: white;
+  --cell-red-background-color: #e74c3c;
+  --cell-green-background-color: #2ecc71;
+  --cell-gold-background-color: gold;
+  --cell-gold-text-color: black;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --button-background-color: #1e1e1e;
+  --button-text-color: #e0e0e0;
+  --input-background-color: #1e1e1e;
+  --input-text-color: #e0e0e0;
+  --cell-background-color: #333;
+  --cell-text-color: #e0e0e0;
+  --cell-red-background-color: #c0392b;
+  --cell-green-background-color: #27ae60;
+  --cell-gold-background-color: goldenrod;
+  --cell-gold-text-color: black;
+}
+
+/* System theme */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --button-background-color: #1e1e1e;
+    --button-text-color: #e0e0e0;
+    --input-background-color: #1e1e1e;
+    --input-text-color: #e0e0e0;
+    --cell-background-color: #333;
+    --cell-text-color: #e0e0e0;
+    --cell-red-background-color: #c0392b;
+    --cell-green-background-color: #27ae60;
+    --cell-gold-background-color: goldenrod;
+    --cell-gold-text-color: black;
+  }
+}
+
+/* Reset styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,8 +57,8 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 h1, h2 {
@@ -21,13 +71,16 @@ h1, h2 {
   margin-top: 10px;
 }
 
-#language-switcher button {
-  padding: 5px 10px;
-  margin: 0 5px;
-  cursor: pointer;
+#language-switcher label {
+  font-size: 16px;
+  margin-right: 5px;
 }
 
-#settings, #game-container, #results-container {
+#language-switcher select {
+  font-size: 16px;
+}
+
+#main-menu, #settings, #game-container, #results-container {
   max-width: 600px;
   margin: 20px auto;
   text-align: center;
@@ -41,10 +94,17 @@ label, select, button {
 button {
   padding: 10px 20px;
   cursor: pointer;
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+}
+
+input {
+  background-color: var(--input-background-color);
+  color: var(--input-text-color);
 }
 
 #question-container {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 #answer-input {
@@ -54,11 +114,30 @@ button {
   text-align: center;
 }
 
-#results-button, #settings-button, #close-results, #clear-results {
+#virtual-keyboard {
   margin-top: 20px;
 }
 
-#clear-results {
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.key {
+  font-size: 24px;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+}
+
+#results-button, #settings-button, #back-to-game, #close-results, #end-game {
+  margin-top: 20px;
+}
+
+#end-game {
   margin-left: 10px;
 }
 
@@ -66,7 +145,30 @@ button {
   display: none;
 }
 
-/* Стили для таблицы результатов */
+/* Styles for results */
+#results-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#results-content .stats {
+  text-align: center;
+}
+
+#results-content .stats p {
+  margin: 5px 0;
+}
+
+#results-content .stats ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#results-content .stats ul li {
+  margin: 3px 0;
+}
+
 #grid-container {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -75,35 +177,35 @@ button {
 }
 
 .cell {
-  background-color: gray;
-  color: white;
+  background-color: var(--cell-background-color);
+  color: var(--cell-text-color);
   padding: 10px;
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
   border-radius: 5px;
 }
 
 .cell.red {
-  background-color: #e74c3c;
+  background-color: var(--cell-red-background-color);
 }
 
 .cell.green {
-  background-color: #2ecc71;
+  background-color: var(--cell-green-background-color);
 }
 
 .cell.gold {
-  background-color: gold;
-  color: black;
+  background-color: var(--cell-gold-background-color);
+  color: var(--cell-gold-text-color);
 }
 
-/* Адаптивность */
+/* Responsive */
 @media (max-width: 600px) {
   #grid-container {
     grid-template-columns: repeat(5, 1fr);
   }
 }
 
-/* Стили для изменения цвета вопроса */
+/* Styles for question coloring */
 #question.red {
   color: #e74c3c;
 }
@@ -114,4 +216,10 @@ button {
 
 #question.gold {
   color: gold;
+}
+
+/* Style for "Submit" button */
+#key-enter {
+  background-color: #006400; /* Dark green color */
+  color: white;
 }
