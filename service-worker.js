@@ -1,10 +1,9 @@
-const CACHE_NAME = 'multiplication-table-cache-v2';
+const CACHE_NAME = 'multiplication-table-cache-v3';
 const urlsToCache = [
   './',
   './index.html',
   './style.css',
   './app.js',
-  // Добавьте другие ресурсы, которые необходимо кэшировать
 ];
 
 // Установка сервис-воркера и кэширование ресурсов
@@ -17,29 +16,35 @@ self.addEventListener('install', event => {
   );
 });
 
-// Обработка запросов и выдача кэшированных ресурсов
+// Обработка запросов - стратегия "Сначала сеть, затем кэш"
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
+    fetch(event.request)
       .then(response => {
-        // Кэш найден - возвращаем его
-        if (response) {
+        // Проверяем, получили ли мы корректный ответ
+        if (!response || response.status !== 200 || response.type !== 'basic') {
           return response;
         }
-        // Кэш не найден - выполняем запрос и кэшируем ответ
-        return fetch(event.request).then(response => {
-          // Проверяем, получили ли мы корректный ответ
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-          }
-          // Клонируем ответ, так как он является потоком
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME)
-            .then(cache => {
-              cache.put(event.request, responseToCache);
-            });
-          return response;
-        });
+        // Клонируем ответ
+        const responseToCache = response.clone();
+        // Кэшируем ответ
+        caches.open(CACHE_NAME)
+          .then(cache => {
+            cache.put(event.request, responseToCache);
+          });
+        return response;
+      })
+      .catch(() => {
+        // Если сеть недоступна, пытаемся получить ресурс из кэша
+        return caches.match(event.request)
+          .then(response => {
+            if (response) {
+              return response;
+            } else {
+              // Если ресурса нет в кэше, можно вернуть страницу по умолчанию
+              return caches.match('./index.html');
+            }
+          });
       })
   );
 });
